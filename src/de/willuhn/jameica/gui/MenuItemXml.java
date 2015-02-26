@@ -16,6 +16,7 @@ package de.willuhn.jameica.gui;
 import java.rmi.RemoteException;
 import java.util.Enumeration;
 
+import org.eclipse.jface.util.Util;
 import org.eclipse.swt.graphics.Image;
 
 import net.n3.nanoxml.IXMLElement;
@@ -50,7 +51,8 @@ public class MenuItemXml extends AbstractItemXml implements MenuItem
    */
   public String getShortcut() throws RemoteException
   {
-    return (String) getAttribute("shortcut");
+    final String shortcut = (String) getAttribute("shortcut");
+    return (shortcut==null || !Util.isMac())?shortcut:shortcut.replace("ALT", "COMMAND");
   }
 
   /**

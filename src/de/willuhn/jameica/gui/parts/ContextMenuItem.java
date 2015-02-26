@@ -12,6 +12,7 @@
  **********************************************************************/
 package de.willuhn.jameica.gui.parts;
 
+import org.eclipse.jface.util.Util;
 import org.eclipse.swt.graphics.Image;
 
 import de.willuhn.jameica.gui.Action;
@@ -168,6 +169,8 @@ public class ContextMenuItem
    */
   public void setShortcut(String shortcut)
   {
+    if (Util.isMac())
+      shortcut = shortcut.replace("ALT", "COMMAND");
     this.shortcut = shortcut;
   }
 
